@@ -37,3 +37,20 @@
 .renderer-notice{position:absolute;left:5%;bottom:13%;z-index:8;display:flex;align-items:center;gap:16px;padding:12px 16px;background:#0b1f30;border:1px solid #29465a;border-radius:4px;color:var(--muted);font-size:13px;direction:rtl}.renderer-notice button{border:1px solid #32566b;background:transparent;color:var(--cyan);border-radius:3px;padding:6px 12px;cursor:pointer}
 
 .renderer-retry{position:absolute;bottom:12%;left:4%;z-index:6;width:29px;height:29px;border:1px solid #29465a;border-radius:3px;background:#0b1f30;color:#8fa6b8;font:18px Arial,sans-serif;cursor:pointer;opacity:.65}.renderer-retry:hover{color:#27d9e8;opacity:1}
+
+/* Scene 05: preserve the three sectors while progressively narrowing focus. */
+.scene-5 .screening-zones{gap:6%;bottom:0}
+.scene-5 .screening-zones>div{position:relative;transition:opacity .75s ease}
+.scene-5 .screening-zones .deemphasized{opacity:.4}
+.scene-5 .screening-zones h2{font-size:clamp(18px,1.65vw,31px);line-height:1.8;margin:13px 0 14px;transition:color .65s ease}
+.scene-5 .screening-index{position:relative;display:flex;justify-content:center;align-items:center}
+.scene-5 .screening-index>.item-index{display:flex;justify-content:center;align-items:center;width:27px;height:27px;border:1px solid #355065;border-radius:50%;font-size:11px;letter-spacing:0}
+.scene-5 .screening-focus .item-index{border-color:#3c809c;color:#c6e1ec}
+.scene-5 .selected .item-index{border-color:#27d9e8;color:#27d9e8}
+.scene-5 .screening-arrow{position:absolute;left:calc(50% + 30px);width:calc(100% + 18% - 60px);height:1px;background:#264153;color:#456074;display:flex;justify-content:flex-end;align-items:center;font:20px Arial,sans-serif;direction:ltr;transition:color .7s,background .7s}
+.scene-5 .screening-arrow.is-traced{background:#376f92;color:#71b7d4}
+.scene-5 .zone-line{max-width:260px;transition:background .7s}
+.scene-5 .selected .zone-line{height:2px;background:#27d9e8}
+.scene-5 .winner{font-size:clamp(15px,1.22vw,23px);padding-top:16px;gap:13px;color:#5be3a3}
+.scene-5 .selected .reveal.is-visible{transition-delay:.7s}
+@media(prefers-reduced-motion:reduce){.scene-5 .selected .reveal.is-visible{transition-delay:0s}}

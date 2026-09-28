@@ -4,6 +4,7 @@ import { Line } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { HeroAssembly } from './HeroAssembly';
+import { TransportLandscape } from './TransportLandscape';
 import { observeWebGLContext } from './contextLifecycle';
 import { fa } from '../content/fa';
 
@@ -48,7 +49,6 @@ function Nodes({beat,capabilities=false}:{beat:number;capabilities?:boolean}) {
  const count=capabilities?5:3;
  return <group><Core/>{Array.from({length:count},(_,i)=>{const a=i/count*Math.PI*2-.3;const p:[number,number,number]=[Math.cos(a)*3.4,.4,Math.sin(a)*3.4];return <Reveal key={i} show={beat>=i}><group position={p}><mesh><cylinderGeometry args={[.65,.75,.65,6]}/><meshStandardMaterial color={[green,blue,cyan,warm,blue][i]} metalness={.6} roughness={.4}/></mesh><Circuit r={.95} y={-.3}/></group><Line points={[[0,.04,0],[p[0],.04,p[2]]]} color={beat>=count?cyan:blue} transparent opacity={beat>=count?.9:.35}/></Reveal>})}</group>;
 }
-function Screening({beat}:{beat:number}) {return <group>{[-6.3,0,6.3].map((x,i)=><group key={i} position={[x,0,0]}><mesh position={[0,-.12,0]}><cylinderGeometry args={[1.75,1.75,.16,64]}/><meshStandardMaterial color={i===2&&beat===3?'#174667':'#102938'}/></mesh><group scale={i===0&&beat>=1?.68:i===1&&beat>=2?.68:1}>{i===0?<group><Block position={[-.55,.65,0]} scale={[.7,1.3,.85]}/><Block position={[.55,.9,0]} scale={[.6,1.8,.6]}/><Block position={[0,.3,.6]} scale={[2,.6,.6]} color="#305064"/></group>:i===1?<group><Block position={[0,.7,0]} scale={[2.4,1,.85]} color="#34556e"/>{[-.7,.7].map(xx=><Block key={xx} position={[xx,.2,0]} scale={[.4,.3,1]} color="#0b1620"/>)}<Block position={[0,.85,.44]} scale={[2.1,.34,.02]} color="#92b4c7"/></group>:<Motorcycle scale={beat===3?1.25:1}/>}</group><Circuit r={1.78} y={0} color={i===2&&beat===3?cyan:blue} opacity={i===2&&beat===3?1:.25}/></group>)}</group>}
 function Flows({beat}:{beat:number}) { const costs=beat>=4;return <group><Core/>{Array.from({length:costs?5:4},(_,i)=><Reveal key={`${costs}-${i}`} show={i<=(costs?beat-4:beat)}><Block position={[(costs?-1:1)*4,.3,(i-2)*1.3]} scale={[.6,.6,.6]} color={costs?warm:cyan}/><Line points={[[(costs?-1:1)*4,.08,(i-2)*1.3],[(costs?-1:1)*2,.08,(i-2)*1.3],[0,.08,0]]} color={costs?warm:cyan} transparent opacity={.65}/></Reveal>)}</group>}
 function FlowParticles({scene,beat}:{scene:number;beat:number}) {
  const ref=useRef<THREE.Points>(null!);
@@ -68,7 +68,7 @@ function World({scene,beat}:{scene:number;beat:number}) {
  <group visible={scene===1}><Pillars beat={scene===1?beat:0}/></group>
  <group visible={scene===2}><Nodes beat={scene===2?beat:0}/></group>
  <group visible={scene===3}><Nodes capabilities beat={scene===3?beat:0}/></group>
- <group visible={scene===4}><Screening beat={scene===4?beat:0}/></group>
+ <group visible={scene===4}><TransportLandscape beat={scene===4?beat:0} active={scene===4} motorcycle={<Motorcycle/>}/></group>
  <group visible={scene===6}><Circuit r={4.5}/><FleetUnits active={beat===0||beat>=5?10:beat===1?7:beat===2?5:3} connected={beat>=5}/><Reveal show={scene===6&&beat===4}><Block position={[0,1.1,-2]} scale={[6,2.2,.15]} color="#713e36"/></Reveal></group>
  <group visible={scene===7}><HeroAssembly beat={scene===7?beat:0} active={scene===7}><Motorcycle position={[0,.02,0]} scale={1.18}/></HeroAssembly></group>
  <group visible={scene===8}><Flows beat={scene===8?beat:0}/></group>
