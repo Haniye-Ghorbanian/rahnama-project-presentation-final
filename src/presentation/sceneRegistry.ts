@@ -1,0 +1,2 @@
+import { OpeningScene, MapnaIntroScene, ElectrificationScene, MapnaEVScene, TransportScreeningScene, MotorcycleEcosystemScene, CustomerProblemScene, ProposedSolutionScene, BusinessModelScene, CustomerEconomicsScene, MapnaEconomicsScene, PilotScene, ExpansionScene } from '../scenes/Scenes';
+export const sceneRegistry = [OpeningScene, MapnaIntroScene, ElectrificationScene, MapnaEVScene, TransportScreeningScene, MotorcycleEcosystemScene, CustomerProblemScene, ProposedSolutionScene, BusinessModelScene, CustomerEconomicsScene, MapnaEconomicsScene, PilotScene, ExpansionScene];
